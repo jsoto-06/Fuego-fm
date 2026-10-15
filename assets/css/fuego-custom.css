@@ -1,0 +1,281 @@
+/* Fuego FM - Custom Dynamic Styles & Animations */
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(26, 28, 32, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-dock {
+  background: rgba(12, 14, 17, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 87, 34, 0.2);
+}
+
+/* Mobile Safe Area Inset */
+.fuego-bottom-dock {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px);
+}
+
+/* Smooth Touch Scrolling for Dial Pills & Grids */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+/* EQ Spectrum Bars */
+.eq-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 48px;
+  overflow: hidden;
+}
+
+.eq-bar {
+  flex: 1;
+  min-width: 3px;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.15s ease;
+  animation: eqBounce 1s ease-in-out infinite alternate;
+}
+
+.eq-paused .eq-bar {
+  animation-play-state: paused !important;
+  height: 8px !important;
+}
+
+@keyframes eqBounce {
+  0% { height: 15%; }
+  30% { height: 75%; }
+  50% { height: 35%; }
+  75% { height: 95%; }
+  100% { height: 20%; }
+}
+
+.eq-bar:nth-child(2n) { animation-duration: 0.8s; }
+.eq-bar:nth-child(3n) { animation-duration: 1.1s; animation-direction: alternate-reverse; }
+.eq-bar:nth-child(4n) { animation-duration: 0.65s; }
+.eq-bar:nth-child(5n) { animation-duration: 0.95s; }
+.eq-bar:nth-child(7n) { animation-duration: 1.25s; }
+
+/* Custom Sliders for Timeline and Volume */
+input[type="range"].fuego-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #282a2d;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+input[type="range"].fuego-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #feb700;
+  box-shadow: 0 0 10px rgba(254, 183, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"].fuego-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  background: #ff5722;
+  box-shadow: 0 0 14px rgba(255, 87, 34, 0.8);
+}
+
+input[type="range"].fuego-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  background: #feb700;
+  box-shadow: 0 0 10px rgba(254, 183, 0, 0.6);
+  cursor: pointer;
+}
+
+/* Modal Dialog */
+.fuego-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 13, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fuego-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fuego-modal-card {
+  background: #1a1c1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 32px rgba(255, 87, 34, 0.2);
+  border-radius: 1rem;
+  max-width: 520px;
+  width: 100%;
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.fuego-modal-backdrop.is-open .fuego-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Toast Notifications */
+#fuego-toast-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.fuego-toast {
+  background: #1e2023;
+  color: #e2e2e6;
+  border-left: 4px solid #ff5722;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fuego-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Mobile Nav Drawer */
+.fuego-mobile-menu {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: rgba(17, 19, 23, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 49;
+  transform: translateY(-120%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.fuego-mobile-menu.is-active {
+  transform: translateY(0);
+}
+
+/* Rotating vinyl effect */
+.vinyl-spin {
+  animation: vinylRotate 20s linear infinite;
+}
+
+.vinyl-spin.paused {
+  animation-play-state: paused;
+}
+
+@keyframes vinylRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* WordPress standard post & content styling */
+.fuego-prose {
+  color: #e2e2e6;
+  line-height: 1.75;
+}
+
+.fuego-prose h1, .fuego-prose h2, .fuego-prose h3, .fuego-prose h4 {
+  font-family: 'Syne', sans-serif;
+  color: #ffffff;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.fuego-prose p {
+  margin-bottom: 1.25em;
+  color: #c5c7cb;
+}
+
+.fuego-prose a {
+  color: #ff5722;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fuego-prose a:hover {
+  color: #feb700;
+}
+
+.fuego-prose blockquote {
+  border-left: 4px solid #ff5722;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #ffb5a0;
+  background: rgba(255, 87, 34, 0.05);
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5rem 0;
+}
+
+.fuego-prose img {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.fuego-prose ul, .fuego-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
+}
+
+.fuego-prose li {
+  margin-bottom: 0.5em;
+}
+
+/* Comments section styling */
+.fuego-comment-box {
+  background: #1a1c1f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}

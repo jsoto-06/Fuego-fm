@@ -1,0 +1,179 @@
+/*
+Theme Name: KLK Radio 47 - Sabor Latino
+Theme URI: https://klkradio47.com
+Author: jsoto06
+Author URI: https://klkradio47.com
+Description: Tema premium para WordPress de estación de radio oficial KLK Radio 47 – Sabor Latino. Incluye reproductor de streaming persistente sincronizado, selector de diales temáticos 24/7, votación en directo El Termómetro Latino, parrilla de programación, muro de oyentes con envío en tiempo real y soporte completo para personalizador de WordPress.
+Version: 1.0.11
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: fuego-fm
+Tags: entertainment, music, radio, audio, streaming, dark-mode, responsive-layout, custom-menu, featured-images, theme-options
+*/
+
+:root {
+  --bg-surface: #111317;
+  --bg-surface-lowest: #0c0e11;
+  --bg-surface-low: #1a1c1f;
+  --bg-surface-container: #1e2023;
+  --bg-surface-high: #282a2d;
+  --bg-surface-highest: #333538;
+  --color-primary: #ffb5a0;
+  --color-primary-container: #ff5722;
+  --color-secondary: #ffdb9d;
+  --color-secondary-container: #feb700;
+  --color-tertiary: #ffb2be;
+  --color-tertiary-container: #ff4e7c;
+  --color-on-surface: #e2e2e6;
+  --color-on-surface-variant: #e4beb4;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #111317;
+  color: #e2e2e6;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0e11;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333538;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5722;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes waveBar {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 22px;
+  }
+}
+
+.animate-live-dot {
+  animation: pulseGlow 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.waveform-bar {
+  animation: waveBar 1.2s ease-in-out infinite;
+}
+
+.waveform-bar.paused {
+  animation-play-state: paused !important;
+  height: 6px !important;
+}
+
+.waveform-bar:nth-child(1) { animation-delay: 0.05s; }
+.waveform-bar:nth-child(2) { animation-delay: 0.25s; }
+.waveform-bar:nth-child(3) { animation-delay: 0.45s; }
+.waveform-bar:nth-child(4) { animation-delay: 0.15s; }
+.waveform-bar:nth-child(5) { animation-delay: 0.35s; }
+
+/* WordPress core required classes */
+.alignleft {
+  float: left;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.alignright {
+  float: right;
+  margin-left: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5em;
+}
+
+.alignwide {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+/* Event Modal Content Typography */
+#fuego-ev-desc p {
+  margin-bottom: 0.85rem;
+  line-height: 1.65;
+}
+#fuego-ev-desc p:last-child {
+  margin-bottom: 0;
+}
+#fuego-ev-desc strong, #fuego-ev-desc b {
+  color: #ffffff;
+  font-weight: 700;
+}
+#fuego-ev-desc em, #fuego-ev-desc i {
+  color: #cbd5e1;
+}
+#fuego-ev-desc ul {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+#fuego-ev-desc ol {
+  list-style-type: decimal;
+  margin-left: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+#fuego-ev-desc li {
+  margin-bottom: 0.35rem;
+}
+
